@@ -9,7 +9,7 @@ function generatePassword() {
   const includeNumbers = confirm("Include numbers?");
   const includeSpecialChars = confirm("Include special characters?");
 
-    // Prompt for the length of the password
+    // Prompt for user to select the length of their password
     const passwordLength = prompt("Enter password length (8-32 characters):");
 
     // Checks to see if password length is within correct values
@@ -18,5 +18,16 @@ function generatePassword() {
       return;
     }
 
-
+     // Checks to see if atleast one character type has been selected
+  if (!(includeLowercase || includeUppercase || includeNumbers || includeSpecialChars)) {
+    alert("Please select at least one character type.");
+    return;
   }
+
+    // Generate the password based on selected character groups
+    const password = generateRandomPassword(includeLowercase, includeUppercase, includeNumbers, includeSpecialChars, passwordLength);
+
+    // Code that will display generated password
+    alert("Your generated password is: " + password);
+  }
+  
