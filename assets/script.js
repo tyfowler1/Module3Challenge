@@ -28,6 +28,30 @@ function generatePassword() {
     const password = generateRandomPassword(includeLowercase, includeUppercase, includeNumbers, includeSpecialChars, passwordLength);
 
     // Code that will display generated password
-    alert("Your generated password is: " + password);
+    document.getElementById("password").value = password;
   }
   
+
+// Helper Function
+function generateRandomPassword(includeLowercase, includeUppercase, includeNumbers, includeSpecialChars, length) {
+  // Variables for the four character groups
+  const lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
+  const uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const numberChars = "0123456789";
+  const specialChars = "!@#$%^&*()-_=+[]{}|;:'\",.<>/?";
+
+    // Variable to hold the character groups that were selected
+    let characterPool = "";
+    if (includeLowercase) characterPool += lowercaseChars;
+    if (includeUppercase) characterPool += uppercaseChars;
+    if (includeNumbers) characterPool += numberChars;
+    if (includeSpecialChars) characterPool += specialChars;
+
+    let password = "";
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characterPool.length);
+      password += characterPool.charAt(randomIndex);
+    }
+  
+    return password;
+  }
